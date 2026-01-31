@@ -152,6 +152,7 @@
     <Compile Include="GameView\PrintStringBuffer.cs" />
     <Compile Include="GameView\StringMeasure.cs" />
     <Compile Include="GameView\StringStyle.cs" />
+    <Compile Include="ExternalBridge.cs" />
     <Compile Include="GlobalStatic.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Sub\EmueraException.cs" />
