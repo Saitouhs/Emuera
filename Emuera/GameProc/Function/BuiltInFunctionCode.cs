@@ -76,6 +76,7 @@ namespace MinorShift.Emuera.GameProc.Function
 		ADDDEFCHARA,
 		ADDVOIDCHARA,//変数に何の設定のないキャラを作成
 		DELCHARA,//(キャラ登録番号)のキャラクタを削除。
+		SENDCHARA,//外部ブリッジにキャラIDを送信
 
 		PUTFORM,//@SAVEINFO関数でのみ使用可能。PRINTFORMと同様の書式でセーブデータに概要をつける。
 		QUIT,//ゲームを終了

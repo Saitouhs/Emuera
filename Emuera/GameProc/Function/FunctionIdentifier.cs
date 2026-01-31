@@ -209,6 +209,7 @@ namespace MinorShift.Emuera.GameProc.Function
 			addFunction(FunctionCode.ADDDEFCHARA, argb[FunctionArgType.VOID], METHOD_SAFE | EXTENDED);
 			addFunction(FunctionCode.ADDVOIDCHARA, new ADDVOIDCHARA_Instruction());//変数に何の設定のないキャラを作成
 			addFunction(FunctionCode.DELCHARA, new ADDCHARA_Instruction(false, true));//(キャラ登録番号)のキャラクタを削除。
+			addFunction(FunctionCode.SENDCHARA, new SENDCHARA_Instruction());
 
 			addFunction(FunctionCode.PUTFORM, argb[FunctionArgType.FORM_STR_NULLABLE], METHOD_SAFE);//@SAVEINFO関数でのみ使用可能。PRINTFORMと同様の書式でセーブデータに概要をつける。
 			addFunction(FunctionCode.QUIT, argb[FunctionArgType.VOID]);//ゲームを終了
