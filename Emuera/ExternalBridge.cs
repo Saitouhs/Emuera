@@ -8,5 +8,10 @@ namespace MinorShift.Emuera
 		{
 			Debug.WriteLine($"[EXT] CHARA {id}");
 		}
+
+		internal static void SendString(string text)
+		{
+			Debug.WriteLine($"[EXT] STR {text}");
+		}
 	}
 }

@@ -999,6 +999,29 @@ namespace MinorShift.Emuera.GameProc.Function
 			}
 		}
 
+		private sealed class SENDSTR_Instruction : AbstractInstruction
+		{
+			public SENDSTR_Instruction()
+			{
+				ArgBuilder = ArgumentParser.GetArgumentBuilder(FunctionArgType.STR_EXPRESSION);
+				flag = METHOD_SAFE | EXTENDED;
+			}
+
+			public override void DoInstruction(ExpressionMediator exm, InstructionLine func, ProcessState state)
+			{
+				string text;
+				if (func.Argument.IsConst)
+					text = func.Argument.ConstStr;
+				else
+					text = ((ExpressionArgument)func.Argument).Term.GetStrValue(exm);
+
+				if (text == null)
+					text = string.Empty;
+
+				MinorShift.Emuera.ExternalBridge.SendString(text);
+			}
+		}
+
 		private sealed class SWAPCHARA_Instruction : AbstractInstruction
 		{
 			public SWAPCHARA_Instruction()
