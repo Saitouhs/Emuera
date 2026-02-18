@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Pipes;
+using System.Text;
 
 namespace MinorShift.Emuera
 {
@@ -11,37 +12,29 @@ namespace MinorShift.Emuera
 		{
 			Debug.WriteLine($"[EXT] CHARA {id}");
 
-            using (var clientPipe = new NamedPipeClientStream(
+            using var clientPipe = new NamedPipeClientStream(
                 ".",
                 "testpipe",
                 PipeDirection.InOut,
-				PipeOptions.None)){
-                try
-                {
-                    clientPipe.Connect(500);
+                PipeOptions.None);
+            try
+            {
+                // AutoFlush=true：确保立刻发出去
+                using var writer = new StreamWriter(clientPipe, Encoding.UTF8, 1024, leaveOpen: true)
+                { AutoFlush = true };
 
-                    // AutoFlush=true：确保立刻发出去
-                    using (var writer = new StreamWriter(clientPipe))
-                    {
-                        writer.WriteLine($"[EXT] CHARA {id}");
-                        writer.Flush(); // 旧写法里建议显式 Flush
-                    }
-
-                    // 写完就结束 using，clientPipe 关闭——server 应该能正常 Disconnect 后继续等
-                }
-                catch (TimeoutException)
-                {
-                    Console.WriteLine("[client] Pipe connection timed out.");
-                }
-                catch (IOException ex)
-                {
-                    Console.WriteLine($"[client] Pipe IO error: {ex.Message}");
-                }
+                writer.WriteLine("123");
+                // 写完就结束 using，clientPipe 关闭——server 应该能正常 Disconnect 后继续等
             }
-
-            
+            catch (TimeoutException)
+            {
+                Console.WriteLine("[client] Pipe connection timed out.");
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine($"[client] Pipe IO error: {ex.Message}");
+            }
         }
-
 		internal static void SendString(string text)
 		{
 			Debug.WriteLine($"[EXT] STR {text}");

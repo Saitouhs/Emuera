@@ -1,11 +1,12 @@
-﻿using System;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using MinorShift._Library;
-using MinorShift.Emuera.GameView;
+﻿using MinorShift._Library;
 using MinorShift.Emuera.GameData.Expression;
+using MinorShift.Emuera.GameView;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 namespace MinorShift.Emuera
 {
@@ -39,8 +40,11 @@ namespace MinorShift.Emuera
 		[STAThread]
 		static void Main(string[] args)
 		{
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-			ExeDir = Sys.ExeDir;
+            var sjis = Encoding.GetEncoding(932);          // 推荐：codepage 932 = Shift-JIS
+            //var sjis2 = Encoding.GetEncoding("shift_jis"); // 也行
+            ExeDir = Sys.ExeDir;
 #if DEBUG
 			//debugMode = true;
 

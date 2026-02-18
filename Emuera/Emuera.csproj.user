@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>publish\</PublishUrlHistory>
@@ -14,6 +14,7 @@
     </ErrorReportUrlHistory>
     <FallbackCulture>ja-JP</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartArguments>
@@ -23,4 +24,27 @@
     <StartArguments>
     </StartArguments>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Forms\ClipBoardDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ColorBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\ConfigDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DebugConfigDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DebugDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\EraPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Forms\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
