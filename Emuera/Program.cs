@@ -141,8 +141,37 @@ namespace MinorShift.Emuera
 			{
 				StartTime = WinmmTimer.TickCount;
 				using (win = new MainWindow())
-				{
-					Application.Run(win);
+                {
+                    MinorShift.Emuera.GameView.ExternalInput.OnLine = (line) =>
+                    {
+                        try
+                        {
+                            if (win != null && !win.IsDisposed && win.IsHandleCreated)
+                            {
+                                win.BeginInvoke((MethodInvoker)delegate
+                                {
+                                    try
+                                    {
+                                        win.SubmitExternalInput(line);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("[INPUT DISPATCH ERROR] " + ex.Message);
+                                        Console.Out.Flush();
+                                    }
+                                });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("[INPUT THREAD ERROR] " + ex.Message);
+                            Console.Out.Flush();
+                        }
+                    };
+
+                    MinorShift.Emuera.GameView.ExternalInput.Start();
+
+                    Application.Run(win);
 					Content.AppContents.UnloadContents();
 					if (!Reboot)
 						break;

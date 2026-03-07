@@ -312,7 +312,8 @@ namespace MinorShift.Emuera.GameView
 		{
 			if (string.IsNullOrEmpty(str))
 				return;
-			if (str.Contains("\n"))
+            ExternalOutput.Send("Print", str);
+            if (str.Contains("\n"))
 			{
 				int newline = str.IndexOf('\n');
 				string upper = str.Substring(0, newline);
@@ -333,7 +334,8 @@ namespace MinorShift.Emuera.GameView
 		public void PrintImg(string str)
 		{
 			printBuffer.Append(new ConsoleImagePart(str, null, 0, 0, 0));
-		}
+            ExternalOutput.Send("PrintImg", str);
+        }
 
 		public void PrintShape(string type, int[] param)
 		{
@@ -351,8 +353,9 @@ namespace MinorShift.Emuera.GameView
 			{
 				ConsoleDisplayLine[] dispList = printBuffer.Flush(stringMeasure, force_temporary);
 				addRangeDisplayLine(dispList);
-			}
-			addRangeDisplayLine(HtmlManager.Html2DisplayLine(str, stringMeasure, this));
+            }
+            ExternalOutput.Send("PrintHtml", str);
+            addRangeDisplayLine(HtmlManager.Html2DisplayLine(str, stringMeasure, this));
 			RefreshStrings(false);
 		}
 
@@ -360,11 +363,11 @@ namespace MinorShift.Emuera.GameView
 		private int printCWidthL = -1;
 		private int printCWidthL2 = -1;
 		public void PrintC(string str, bool alignmentRight)
-		{
-			if (string.IsNullOrEmpty(str))
+        {
+            if (string.IsNullOrEmpty(str))
 				return;
-
-			printBuffer.Append(CreateTypeCString(str, alignmentRight), Style, true);
+            ExternalOutput.Send("PrintC", str);
+            printBuffer.Append(CreateTypeCString(str, alignmentRight), Style, true);
 		}
 
 		private void calcPrintCWidth(StringMeasure stringMeasure)

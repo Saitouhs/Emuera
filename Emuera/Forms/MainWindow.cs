@@ -1032,6 +1032,19 @@ namespace MinorShift.Emuera
 			labelMacroGroupChanged.Location = new Point(4, richTextBox1.Location.Y - labelMacroGroupChanged.Height - 4);
 			labelMacroGroupChanged.Visible = true;
 		}
+        public void SubmitExternalInput(string line)
+        {
+            if (string.IsNullOrEmpty(line))
+                line = "";
 
-	}
+            if (this.IsDisposed || !this.IsHandleCreated)
+                return;
+
+            if (console != null)
+            {
+                console.PressEnterKey(false, line, false);
+            }
+        }
+
+    }
 }
