@@ -312,7 +312,6 @@ namespace MinorShift.Emuera.GameView
 		{
 			if (string.IsNullOrEmpty(str))
 				return;
-            ExternalOutput.Send("Print", str);
             if (str.Contains("\n"))
 			{
 				int newline = str.IndexOf('\n');
@@ -354,7 +353,7 @@ namespace MinorShift.Emuera.GameView
 				ConsoleDisplayLine[] dispList = printBuffer.Flush(stringMeasure, force_temporary);
 				addRangeDisplayLine(dispList);
             }
-            ExternalOutput.Send("PrintHtml", str);
+            ExternalOutput.SendHtml("PrintHtml", str);
             addRangeDisplayLine(HtmlManager.Html2DisplayLine(str, stringMeasure, this));
 			RefreshStrings(false);
 		}

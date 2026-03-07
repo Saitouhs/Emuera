@@ -54,14 +54,17 @@ namespace MinorShift.Emuera.GameData.Expression
 			else
 			{
 				Console.Print(str);
-				if (func.IsNewLine() || func.IsWaitInput())
-				{
-					Console.NewLine();
+                if (func.IsNewLine() || func.IsWaitInput())
+                {
+                    ExternalOutput.SendL();
+                    Console.NewLine();
 					if (func.IsWaitInput())
 						Console.ReadAnyKey();
-				}
-			}
-			Console.UseSetColorStyle = true;
+                }else
+					ExternalOutput.Send("Print", str);
+            }
+            ExternalOutput.Send("Print", str);
+            Console.UseSetColorStyle = true;
 		}
 
 		public string ConvertStringType(string str)

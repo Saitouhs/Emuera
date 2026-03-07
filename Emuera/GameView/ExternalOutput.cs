@@ -26,5 +26,37 @@ namespace MinorShift.Emuera.GameView
                 // 旁路失败不能影响原程序
             }
         }
+        public static void SendL()
+        {
+            if (!Enabled)
+                return;
+
+            try
+            {
+                // 第一阶段先最土：直接打到标准输出
+                Console.WriteLine();
+                Console.Out.Flush();
+            }
+            catch
+            {
+                // 旁路失败不能影响原程序
+            }
+        }
+        public static void SendHtml(string type, string text)
+        {
+            if (!Enabled || text == null)
+                return;
+
+            try
+            {
+                // 第一阶段先最土：直接打到标准输出
+                Console.WriteLine($"[EMUERA-{type}] {text}");
+                Console.Out.Flush();
+            }
+            catch
+            {
+                // 旁路失败不能影响原程序
+            }
+        }
     }
 }
