@@ -16,7 +16,7 @@ namespace MinorShift.Emuera.GameProc
 
 	internal sealed partial class Process
 	{
-		public Process(EmueraConsole view)
+		public Process(IConsoleHost view)
 		{
 			console = view;
 		}
@@ -37,7 +37,7 @@ namespace MinorShift.Emuera.GameProc
 		public VariableEvaluator VEvaluator { get { return vEvaluator; } }
 		private ExpressionMediator exm;
 		private GameBase gamebase;
-		readonly EmueraConsole console;
+		readonly IConsoleHost console;
 		private IdentifierDictionary idDic;
 		ProcessState state;
 		ProcessState originalState;//リセットする時のために

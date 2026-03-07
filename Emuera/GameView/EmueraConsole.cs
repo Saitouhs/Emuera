@@ -55,7 +55,7 @@ namespace MinorShift.Emuera.GameView
 		Normal = 1,
 	}
 
-	internal sealed partial class EmueraConsole :IDisposable
+	internal sealed partial class EmueraConsole : IConsoleHost, IDisposable
 	{
 		public EmueraConsole(MainWindow parent)
 		{
@@ -238,7 +238,7 @@ namespace MinorShift.Emuera.GameView
 		/// スクリプトが継続中かどうか
 		/// 入力系はメッセージスキップやマクロも含めてIsInProcessを参照すべき
 		/// </summary>
-		internal bool IsRunning
+		public bool IsRunning
 		{
 			get
 			{

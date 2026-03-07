@@ -273,7 +273,7 @@ namespace MinorShift.Emuera.GameView
 			RefreshStrings(false);
 		}
 
-		internal void PrintErrorButton(string str, ScriptPosition pos)
+		public void PrintErrorButton(string str, ScriptPosition pos)
 		{
 			if (string.IsNullOrEmpty(str))
 				return;
